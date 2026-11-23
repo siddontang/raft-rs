@@ -1485,10 +1485,7 @@ mod test {
         raft_log
             .scan(offset + 1, half, 0, GetEntriesContext::empty(false), |_| {
                 iters += 1;
-                if iters == 2 {
-                    return false;
-                }
-                true
+                iters != 2
             })
             .unwrap();
         assert_eq!(iters, 2);
